@@ -30,7 +30,7 @@ One row per account per day. A `charge_ai_usage` RPC does the insert-or-update a
 
 Image generation is slow and expensive, and clients retry. Every attempt is keyed by a SHA-256 of its fingerprint. The store is a compare-and-swap on `state in ('in-progress','succeeded','terminal-failed')`; a retry with the same attempt id gets the exact recorded artifact back. Seven-day retention with a `SECURITY DEFINER` purge function.
 
-The second file is the honest part. The first applied version raised SQLSTATE 42702 (ambiguous column) on every call, so the API fail-closed at 503 for all renders until `#variable_conflict use_column` was added. Both the bug and the fix are kept so the history is reviewable.
+The second file is the honest part. The first applied version raised SQLSTATE 42702 (ambiguous column) on every call, so the API fail-closed at 503 for all renders until `#variable_conflict use_column` was added. Both the bug and the fix are kept so the history is reviewable. Both files still carry the (UNAPPLIED) header. I have no receipt that the fix ran against production, so applying and self-checking it is an open go-live gate, not a closed bug.
 
 ### 3. Stripe webhook ownership with a bounded lease
 [`sql/2026-07-16-stripe-event-claims.sql`](sql/2026-07-16-stripe-event-claims.sql)

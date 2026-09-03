@@ -27,6 +27,8 @@ Supabase recovery point, deploy only the additive backup endpoint/configuration,
 then immediately trigger and verify the first logical recovery point. Do not
 couple that bootstrap deployment to a schema migration.
 
+PITR is not enabled on this project yet, and no restore has been rehearsed. Until both are done, the verified logical export is the only recovery point I can prove, and the managed layer above is written as the target state, not the current one.
+
 ## Scheduled private-Blob export
 
 Vercel invokes `GET /api/backup-supabase` daily at 05:17 UTC. The function has a
