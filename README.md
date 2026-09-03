@@ -8,6 +8,12 @@ Everything here shipped. Project identifiers and customer data are stripped; the
 
 Serverless functions have no shared memory and no guaranteed single instance. Any state that must be agreed on across requests, retries, and concurrent webhooks has to live in Postgres, and it has to be written so a re-run, a partial prior apply, or a crash mid-effect converges instead of corrupting.
 
+## Supabase features in use, and not in use
+
+Used: Postgres (the whole data plane), Row Level Security enabled and forced on every application table, PostgREST through the service role from Vercel functions, SQL functions as RPCs (`SECURITY DEFINER` with pinned `search_path`), row triggers for immutability and append-only enforcement, an event trigger for future-object lockdown, partial and unique indexes, identity columns, `jsonb` with `CHECK`-enforced shape, `lock_timeout` on every migration, managed backups and PITR as the authoritative recovery layer, and the Supabase CLI migration folder for the newest migrations.
+
+Not used, on purpose: Supabase Auth (sign-in is Google ID-token verification plus LightDeck-minted magic links and sessions in Postgres), Edge Functions (the API is Vercel serverless), Storage (files live in Vercel Blob), and Realtime. Saying so here so nobody reads more into the stack than is there.
+
 ## Patterns
 
 ### 1. Durable rate limiting in Postgres
