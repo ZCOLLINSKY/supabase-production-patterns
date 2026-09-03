@@ -1,5 +1,5 @@
 -- ============================================================================
--- LightDeck · P0 RLS LOCK-DOWN — enable Row-Level Security on every PII / business
+-- LightDeck · P0 RLS LOCK-DOWN: enable Row-Level Security on every PII / business
 --             table. Generated 2026-06-19. IDEMPOTENT · SAFE · NON-BREAKING.
 -- ----------------------------------------------------------------------------
 -- WHY THIS IS SAFE (read before running):
@@ -14,7 +14,7 @@
 --       (i.e. anyone who has your public project URL + anon key) can no longer
 --       read/write these tables. Today there are ZERO policies, which with RLS
 --       *disabled* means the tables are wide open to the anon role via PostgREST.
---       With RLS *enabled and no permissive policy*, the default is DENY — anon
+--       With RLS *enabled and no permissive policy*, the default is DENY: anon
 --       sees zero rows and cannot write.
 --
 --   This is the "lock the front door" fix: ENABLE RLS, add NO anon/authenticated
@@ -26,7 +26,7 @@
 --   access control, not RLS.
 --
 --   FORCE: ALTER TABLE ... FORCE ROW LEVEL SECURITY makes RLS also apply to the
---   table owner role (postgres) — defense in depth. service_role's BYPASSRLS still
+--   table owner role (postgres): defense in depth. service_role's BYPASSRLS still
 --   wins, so the app is unaffected; FORCE only tightens the owner.
 --
 --   IDEMPOTENT: ENABLE/FORCE ROW LEVEL SECURITY are no-ops if already set, so this
@@ -44,7 +44,7 @@
 --      <project-ref>). Sanity check first:
 --        select tablename from pg_tables where schemaname='public' order by 1;
 --   2. Confirm Vercel has SUPABASE_SERVICE_ROLE_KEY set (the API reads it). If the
---      server were on the anon key this would lock it out — it is not.
+--      server were on the anon key this would lock it out: it is not.
 --   3. Confirm no OTHER surface reads this DB with the anon key (a static site,
 --      Retool/Metabase, etc.). None is known to exist in this repo.
 --   4. Take a Supabase backup (Database -> Backups) as cheap insurance.

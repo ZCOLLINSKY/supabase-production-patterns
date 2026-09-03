@@ -7,7 +7,7 @@
 -- 503 attempt_store_unavailable for 100% of night renders. The function body
 -- below now opens with `#variable_conflict use_column`, which fixes it. A
 -- database that already ran the broken version must additionally apply
--- scripts/migrations/2026-08-17-fix-claim-render-attempt-ambiguity.sql — the
+-- scripts/migrations/2026-08-17-fix-claim-render-attempt-ambiguity.sql: the
 -- CREATE TABLE IF NOT EXISTS guards here make a re-run of this whole file safe
 -- too, but the hotfix file is the smaller, reviewable change.
 --
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS public.render_attempts (
 
 -- Partial-existing table: add retention columns if a prior apply created the
 -- table without them. Defaults backfill existing rows. This path does NOT
--- add missing CHECK or PRIMARY KEY — those remain fresh-table-only.
+-- add missing CHECK or PRIMARY KEY: those remain fresh-table-only.
 ALTER TABLE public.render_attempts
   ADD COLUMN IF NOT EXISTS created_at timestamptz NOT NULL DEFAULT now();
 ALTER TABLE public.render_attempts

@@ -1,4 +1,4 @@
--- PRODUCTION HOTFIX (UNAPPLIED) — repair public.claim_render_attempt.
+-- PRODUCTION HOTFIX (UNAPPLIED): repair public.claim_render_attempt.
 --
 -- WHAT IS BROKEN. 2026-08-16-render-attempt-idempotency.sql applied cleanly and
 -- created public.render_attempts, but the claim function it created raises on

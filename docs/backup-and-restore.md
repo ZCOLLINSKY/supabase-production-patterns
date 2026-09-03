@@ -58,9 +58,9 @@ variable names only, never credential values.
 
 Optional bounded settings:
 
-- `SUPABASE_BACKUP_RETENTION_DAYS` — default `90`, allowed `7..3650`.
-- `SUPABASE_BACKUP_PAGE_SIZE` — default `250`, allowed `25..1000`.
-- `SUPABASE_BACKUP_MAX_BYTES` — default 512 MiB, allowed 1 MiB..10 GiB.
+- `SUPABASE_BACKUP_RETENTION_DAYS`: default `90`, allowed `7..3650`.
+- `SUPABASE_BACKUP_PAGE_SIZE`: default `250`, allowed `25..1000`.
+- `SUPABASE_BACKUP_MAX_BYTES`: default 512 MiB, allowed 1 MiB..10 GiB.
 
 Missing/malformed configuration, or reuse of either image-store token, fails
 closed with HTTP 503. A dedicated token whose store does not actually permit
