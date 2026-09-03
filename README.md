@@ -6,6 +6,8 @@ These are the real migration files from the private repository, byte for byte, w
 
 **Start here:** [`sql/2026-07-16-durable-rate-limit-ledger.sql`](sql/2026-07-16-durable-rate-limit-ledger.sql) (156 lines, one table, one RPC, shape validation before replacing the function) or [`sql/2026-07-16-stripe-event-claims.sql`](sql/2026-07-16-stripe-event-claims.sql) (webhook claims with a bounded lease).
 
+Published 2026-09-03, extracted from the private repository so the work is inspectable ahead of Supabase Select. The commit dates here are the extraction date, not when the code was written; the SQL headers carry their own authoring dates.
+
 ## The constraint that shapes everything
 
 Serverless functions have no shared memory and no guaranteed single instance. Any state that must be agreed on across requests, retries, and concurrent webhooks has to live in Postgres, and it has to be written so a re-run, a partial prior apply, or a crash mid-effect converges instead of corrupting.
