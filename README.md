@@ -2,7 +2,7 @@
 
 Real migrations from a production Supabase Postgres database that runs [LightDeck](https://www.lightdeck.tech), a vertical SaaS for lighting contractors. The application is a set of Vercel serverless functions that talk to Postgres through the service role. The browser never touches application data directly.
 
-These are the real migration files from the private repository, byte for byte, with the project reference and customer data stripped. What I can prove about application is narrower than "it all ran," and the repository says so: one of these carries a dated production receipt, most were applied by hand in the SQL editor with no receipt recorded, and two still carry an `(UNAPPLIED)` header because that is their honest state. Each file's header explains why it exists and what it refuses to assume.
+These are the real migration files from the private repository, verbatim except for the project reference, customer data, and punctuation normalized in a few header comments. What I can prove about application is narrower than "it all ran," and the repository says so: one of these carries a dated production receipt, most were applied by hand in the SQL editor with no receipt recorded, and two still carry an `(UNAPPLIED)` header because that is their honest state. Each file's header explains why it exists and what it refuses to assume.
 
 **Start here:** [`sql/2026-07-16-durable-rate-limit-ledger.sql`](sql/2026-07-16-durable-rate-limit-ledger.sql) (156 lines, one table, one RPC, shape validation before replacing the function) or [`sql/2026-07-16-stripe-event-claims.sql`](sql/2026-07-16-stripe-event-claims.sql) (webhook claims with a bounded lease).
 
